@@ -1,1 +1,0 @@
-# Parva-Luminance-Studios
