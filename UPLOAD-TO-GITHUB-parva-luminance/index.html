@@ -1,0 +1,1838 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parva Luminance Studios | Small Light, Lasting Impact</title>
+  <meta name="description" content="Parva Luminance Studios creates photography and videography media that aligns with your goals, from visuals to storytelling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #020202;
+      --void-soft: #0c0b08;
+      --gold: #FFD54A;
+      --gold-soft: #FFE566;
+      --orange: #FF8C42;
+      --red: #FF4433;
+      --text: #f3efe7;
+      --muted: rgba(245, 239, 227, 0.78);
+      --line: rgba(255, 229, 102, 0.22);
+      --panel: rgba(12, 10, 7, 0.72);
+      --panel-strong: rgba(16, 12, 6, 0.9);
+      --shadow-neon: 0 0 22px rgba(255, 213, 74, 0.38), 0 0 48px rgba(255, 140, 66, 0.22);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --section-gap: clamp(4.4rem, 8vw, 7.2rem);
+      --section-inner: 1180px;
+      --ease: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--void);
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background:
+        radial-gradient(circle at 20% -10%, rgba(255, 213, 74, 0.2), transparent 42%),
+        radial-gradient(circle at 88% -8%, rgba(255, 68, 51, 0.19), transparent 34%),
+        linear-gradient(160deg, #050505 0%, #0a0806 42%, #050505 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("grain.jpg") center center / cover repeat;
+      opacity: 0.14;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.36) 100%);
+      z-index: 2;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(255, 213, 74, 0.2), rgba(255, 140, 66, 0.08) 40%, transparent 72%);
+      filter: blur(4px);
+      z-index: 6;
+      mix-blend-mode: screen;
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-wrap {
+      position: relative;
+      z-index: 3;
+    }
+
+    .section {
+      padding: var(--section-gap) clamp(1.1rem, 3vw, 2rem);
+      position: relative;
+    }
+
+    .section-inner {
+      width: min(100%, var(--section-inner));
+      margin-inline: auto;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+    }
+
+    .reveal:not(.is-visible) {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .eyebrow {
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .heading {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.1rem;
+      text-wrap: balance;
+    }
+
+    .subtext {
+      max-width: 64ch;
+      color: var(--muted);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(8, 7, 5, 0.92), rgba(8, 7, 5, 0.58));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-nav .section-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      width: clamp(120px, 16vw, 174px);
+      height: clamp(40px, 6vw, 56px);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .nav-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 12px rgba(255, 213, 74, 0.25));
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.4rem, 1.8vw, 1.2rem);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      color: rgba(244, 236, 220, 0.9);
+      padding: 0.4rem 0.55rem;
+      border-radius: 0.4rem;
+      transition: color var(--ease), text-shadow var(--ease), background var(--ease);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: #fff;
+      text-shadow: 0 0 16px rgba(255, 229, 102, 0.65);
+      background: rgba(255, 213, 74, 0.08);
+      outline: none;
+    }
+
+    .btn {
+      border: 1px solid rgba(255, 213, 74, 0.45);
+      background: linear-gradient(130deg, rgba(255, 213, 74, 0.14), rgba(255, 140, 66, 0.08));
+      color: #fff;
+      padding: 0.72rem 1.2rem;
+      font-size: 0.89rem;
+      font-weight: 600;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease), background var(--ease);
+      box-shadow: 0 0 0 rgba(255, 213, 74, 0);
+      will-change: transform;
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.44rem;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(255, 229, 102, 0.9);
+      box-shadow: var(--shadow-neon);
+      background: linear-gradient(130deg, rgba(255, 213, 74, 0.18), rgba(255, 68, 51, 0.16));
+      outline: none;
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .hero {
+      min-height: clamp(70vh, 85vh, 920px);
+      display: grid;
+      align-items: center;
+      overflow: clip;
+      position: relative;
+      isolation: isolate;
+      padding-top: clamp(2rem, 6vw, 4rem);
+    }
+
+    .hero .section-inner {
+      display: grid;
+      gap: 1.5rem;
+      justify-items: center;
+      text-align: center;
+      max-width: 960px;
+    }
+
+    .hero-emblem-wrap {
+      position: relative;
+      width: min(90vw, 720px);
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-emblem {
+      width: clamp(360px, 62vw, 760px);
+      height: clamp(120px, 16vw, 168px);
+      position: relative;
+      z-index: 3;
+      animation: neonFlicker 6.2s infinite steps(1, end);
+    }
+
+    .hero-emblem img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 13px rgba(255, 229, 102, 0.56))
+              drop-shadow(0 0 34px rgba(255, 140, 66, 0.34));
+    }
+
+    .beam {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.5;
+      z-index: 2;
+    }
+
+    .beam--gold {
+      width: min(94vw, 960px);
+      height: min(94vw, 960px);
+      background: radial-gradient(circle, rgba(255, 213, 74, 0.2) 0%, rgba(255, 229, 102, 0.1) 26%, transparent 66%);
+      animation: pulseGold 4.8s ease-in-out infinite alternate;
+    }
+
+    .beam--orange {
+      width: min(88vw, 820px);
+      height: min(88vw, 820px);
+      background: radial-gradient(circle, rgba(255, 140, 66, 0.18) 0%, rgba(255, 68, 51, 0.08) 38%, transparent 70%);
+      animation: pulseOrange 5.6s ease-in-out infinite alternate;
+      animation-delay: 0.3s;
+    }
+
+    .hero-title {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(2rem, 5.8vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.03;
+      max-width: 14ch;
+      margin-inline: auto;
+      text-shadow: 0 0 22px rgba(255, 213, 74, 0.2);
+    }
+
+    .hero-subtext {
+      max-width: 66ch;
+      color: rgba(245, 239, 227, 0.84);
+      font-size: clamp(0.96rem, 1.6vw, 1.15rem);
+      margin-inline: auto;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.74rem;
+      margin-top: 0.6rem;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: clamp(0.9rem, 1.7vw, 1.2rem);
+      margin-top: 2.2rem;
+    }
+
+    .work-card {
+      grid-column: span 6;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      overflow: clip;
+      background: var(--panel);
+      position: relative;
+      display: grid;
+      min-height: 330px;
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+      box-shadow: inset 0 0 0 rgba(255, 213, 74, 0), 0 18px 32px rgba(0, 0, 0, 0.28);
+    }
+
+    .work-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 229, 102, 0.5);
+      box-shadow: var(--shadow-neon), 0 24px 38px rgba(0, 0, 0, 0.34);
+    }
+
+    .work-media {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      min-height: 220px;
+      overflow: hidden;
+      background: #0f0f0f center / cover no-repeat;
+    }
+
+    .work-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(5, 5, 5, 0.75));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .work-media img,
+    .work-media video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms var(--ease);
+    }
+
+    .work-card:hover .work-media img,
+    .work-card:hover .work-media video {
+      transform: scale(1.03);
+    }
+
+    .work-card.is-vertical-video .work-media {
+      aspect-ratio: 9 / 16;
+      max-width: 360px;
+      margin-inline: auto;
+    }
+
+    .work-card.is-vertical-video .work-media video,
+    .work-media video.is-vertical {
+      object-fit: contain;
+      background: #080808;
+    }
+
+    .work-body {
+      padding: 1.05rem 1.1rem 1.2rem;
+      display: grid;
+      gap: 0.55rem;
+      align-content: start;
+    }
+
+    .work-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.67rem;
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    .work-title {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(1.2rem, 2.3vw, 1.62rem);
+      line-height: 1.1;
+    }
+
+    .work-copy {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .filters {
+      display: flex;
+      gap: 0.58rem;
+      margin-top: 1.6rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(255, 229, 102, 0.28);
+      background: rgba(255, 213, 74, 0.08);
+      color: rgba(255, 245, 219, 0.88);
+      border-radius: 999px;
+      padding: 0.52rem 0.95rem;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all var(--ease);
+    }
+
+    .filter-btn:hover,
+    .filter-btn:focus-visible,
+    .filter-btn.active {
+      border-color: rgba(255, 229, 102, 0.9);
+      color: #fff;
+      background: linear-gradient(140deg, rgba(255, 213, 74, 0.19), rgba(255, 68, 51, 0.15));
+      box-shadow: 0 0 18px rgba(255, 213, 74, 0.2);
+      outline: none;
+    }
+
+    .portfolio-grid {
+      margin-top: 1.6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: clamp(0.72rem, 1.8vw, 1.1rem);
+    }
+
+    .portfolio-item {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(10, 9, 7, 0.8);
+      aspect-ratio: 4 / 5;
+      min-height: 220px;
+      position: relative;
+      isolation: isolate;
+      cursor: pointer;
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .portfolio-item.is-portrait {
+      aspect-ratio: 3 / 4;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 229, 102, 0.64);
+      box-shadow: 0 0 0 1px rgba(255, 229, 102, 0.2), 0 14px 28px rgba(0, 0, 0, 0.34);
+    }
+
+    .portfolio-item-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #111 center / cover no-repeat;
+    }
+
+    .portfolio-item.is-portrait .portfolio-item-media {
+      object-fit: contain;
+      background-color: #111;
+    }
+
+    .portfolio-item.is-vertical-video {
+      aspect-ratio: 9 / 16;
+      max-width: 280px;
+      justify-self: center;
+    }
+
+    .portfolio-item.is-vertical-video .portfolio-item-media,
+    .portfolio-item-media.is-vertical {
+      object-fit: contain;
+      background-color: #080808;
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 0.72rem 0.74rem;
+      background: linear-gradient(180deg, transparent, rgba(4, 4, 4, 0.88));
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .portfolio-overlay strong {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.1;
+    }
+
+    .portfolio-overlay span {
+      font-size: 0.73rem;
+      color: rgba(252, 241, 214, 0.75);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .creators-grid {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+      gap: clamp(0.8rem, 2.2vw, 1.4rem);
+    }
+
+    .creator-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: clip;
+      background: rgba(11, 9, 7, 0.82);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 440px;
+    }
+
+    .creator-portrait {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: linear-gradient(200deg, var(--charcoal-2, #100e0c), #050403);
+      border-radius: 4px;
+    }
+
+    .creator-portrait img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .creator-portrait--full img {
+      object-fit: contain;
+      object-position: center top;
+    }
+
+    .creator-body {
+      display: grid;
+      align-content: start;
+      gap: 0.55rem;
+      padding: 1.05rem 1rem 1.16rem;
+    }
+
+    .creator-name {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.22rem;
+      line-height: 1.1;
+    }
+
+    .creator-role {
+      font-size: 0.76rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    .creator-copy {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .service-grid {
+      margin-top: 1.8rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.95rem;
+    }
+
+    .service-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(10, 9, 7, 0.78);
+      padding: 1.1rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .service-card h3 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.1rem;
+    }
+
+    .about-box,
+    .contact-box {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.1rem, 2.3vw, 1.7rem);
+      background: rgba(10, 8, 6, 0.78);
+      box-shadow: inset 0 0 0 1px rgba(255, 229, 102, 0.05);
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 1.4rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
+    }
+
+    .about-list {
+      list-style: none;
+      display: grid;
+      gap: 0.52rem;
+      color: var(--muted);
+    }
+
+    .about-list li {
+      border-left: 2px solid rgba(255, 229, 102, 0.38);
+      padding-left: 0.72rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem;
+      align-items: start;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .contact-form label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255, 245, 219, 0.86);
+      font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 229, 102, 0.3);
+      border-radius: 0.62rem;
+      background: rgba(7, 7, 7, 0.76);
+      color: #fff;
+      padding: 0.66rem 0.75rem;
+      font: inherit;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: rgba(255, 229, 102, 0.78);
+      box-shadow: 0 0 0 3px rgba(255, 213, 74, 0.16);
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 0.74rem;
+      align-content: start;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.45rem;
+      width: fit-content;
+      color: #fff;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--ease), color var(--ease);
+    }
+
+    .contact-links a:hover,
+    .contact-links a:focus-visible {
+      color: var(--gold-soft);
+      border-color: rgba(255, 229, 102, 0.76);
+      outline: none;
+    }
+
+    .site-footer {
+      padding: 2rem clamp(1.1rem, 3vw, 2rem) 3rem;
+      border-top: 1px solid var(--line);
+      color: rgba(255, 241, 210, 0.74);
+      font-size: 0.84rem;
+      position: relative;
+      z-index: 4;
+    }
+
+    .site-footer .section-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-logo {
+      width: 140px;
+      height: 44px;
+    }
+
+    .footer-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      mix-blend-mode: screen;
+      opacity: 0.9;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.76);
+      backdrop-filter: blur(6px);
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--ease);
+      padding: clamp(0.7rem, 2vw, 1.3rem);
+    }
+
+    .modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-panel {
+      width: min(1080px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      border-radius: clamp(0.9rem, 1.7vw, 1.3rem);
+      border: 1px solid var(--line);
+      background: rgba(7, 7, 7, 0.92);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.44), 0 0 0 1px rgba(255, 229, 102, 0.1) inset;
+    }
+
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.1rem;
+      background: rgba(9, 9, 8, 0.92);
+      border-bottom: 1px solid rgba(255, 229, 102, 0.22);
+      gap: 1rem;
+    }
+
+    .modal-title {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(1.26rem, 3vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .icon-btn {
+      border: 1px solid rgba(255, 229, 102, 0.44);
+      background: rgba(255, 213, 74, 0.14);
+      color: #fff;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: all var(--ease);
+    }
+
+    .icon-btn:hover,
+    .icon-btn:focus-visible {
+      border-color: rgba(255, 229, 102, 0.96);
+      box-shadow: var(--shadow-neon);
+      outline: none;
+    }
+
+    .modal-content {
+      padding: 1.1rem;
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .project-hero {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      overflow: clip;
+      background: #0a0a0a;
+      min-height: 220px;
+    }
+
+    .project-hero img,
+    .project-hero video {
+      width: 100%;
+      max-height: 65vh;
+      object-fit: cover;
+      background: #080808;
+    }
+
+    .project-hero.is-vertical-video video,
+    .project-hero video.is-vertical {
+      object-fit: contain;
+    }
+
+    .modal-description {
+      color: var(--muted);
+      max-width: 75ch;
+    }
+
+    .modal-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.66rem;
+    }
+
+    .modal-gallery img,
+    .modal-gallery video {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 0.65rem;
+      border: 1px solid rgba(255, 229, 102, 0.2);
+      background: #0b0b0b;
+    }
+
+    .modal-gallery .is-vertical {
+      object-fit: contain;
+    }
+
+    .modal-next {
+      margin-top: 0.2rem;
+      justify-self: start;
+    }
+
+    @keyframes pulseGold {
+      0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.4; }
+      100% { transform: translate(-50%, -50%) scale(1.02); opacity: 0.62; }
+    }
+
+    @keyframes pulseOrange {
+      0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.26; }
+      100% { transform: translate(-50%, -50%) scale(1.06); opacity: 0.45; }
+    }
+
+    @keyframes neonFlicker {
+      0%, 18%, 21%, 24%, 63%, 100% { opacity: 1; }
+      19%, 20%, 22%, 23%, 61%, 62% { opacity: 0.83; }
+      45% { opacity: 0.94; }
+      46% { opacity: 0.65; }
+      47% { opacity: 1; }
+    }
+
+    /* neon-pad-0001 */
+    /* neon-pad-0002 */
+    /* neon-pad-0003 */
+    /* neon-pad-0004 */
+    /* neon-pad-0005 */
+    /* neon-pad-0006 */
+    /* neon-pad-0007 */
+    /* neon-pad-0008 */
+    /* neon-pad-0009 */
+    /* neon-pad-0010 */
+    /* neon-pad-0011 */
+    /* neon-pad-0012 */
+    /* neon-pad-0013 */
+    /* neon-pad-0014 */
+    /* neon-pad-0015 */
+    /* neon-pad-0016 */
+    /* neon-pad-0017 */
+    /* neon-pad-0018 */
+    /* neon-pad-0019 */
+    /* neon-pad-0020 */
+    /* neon-pad-0021 */
+    /* neon-pad-0022 */
+    /* neon-pad-0023 */
+    /* neon-pad-0024 */
+    /* neon-pad-0025 */
+    /* neon-pad-0026 */
+    /* neon-pad-0027 */
+    /* neon-pad-0028 */
+    /* neon-pad-0029 */
+    /* neon-pad-0030 */
+    /* neon-pad-0031 */
+    /* neon-pad-0032 */
+    /* neon-pad-0033 */
+    /* neon-pad-0034 */
+    /* neon-pad-0035 */
+    /* neon-pad-0036 */
+    /* neon-pad-0037 */
+    /* neon-pad-0038 */
+    /* neon-pad-0039 */
+    /* neon-pad-0040 */
+    /* neon-pad-0041 */
+    /* neon-pad-0042 */
+    /* neon-pad-0043 */
+    /* neon-pad-0044 */
+    /* neon-pad-0045 */
+    /* neon-pad-0046 */
+    /* neon-pad-0047 */
+    /* neon-pad-0048 */
+    /* neon-pad-0049 */
+    /* neon-pad-0050 */
+    /* neon-pad-0051 */
+    /* neon-pad-0052 */
+    /* neon-pad-0053 */
+    /* neon-pad-0054 */
+    /* neon-pad-0055 */
+    /* neon-pad-0056 */
+    /* neon-pad-0057 */
+    /* neon-pad-0058 */
+    /* neon-pad-0059 */
+    /* neon-pad-0060 */
+    /* neon-pad-0061 */
+    /* neon-pad-0062 */
+    /* neon-pad-0063 */
+    /* neon-pad-0064 */
+    /* neon-pad-0065 */
+    /* neon-pad-0066 */
+    /* neon-pad-0067 */
+    /* neon-pad-0068 */
+    /* neon-pad-0069 */
+    /* neon-pad-0070 */
+    /* neon-pad-0071 */
+    /* neon-pad-0072 */
+    /* neon-pad-0073 */
+    /* neon-pad-0074 */
+    /* neon-pad-0075 */
+    /* neon-pad-0076 */
+    /* neon-pad-0077 */
+    /* neon-pad-0078 */
+    /* neon-pad-0079 */
+    /* neon-pad-0080 */
+    /* neon-pad-0081 */
+    /* neon-pad-0082 */
+    /* neon-pad-0083 */
+    /* neon-pad-0084 */
+    /* neon-pad-0085 */
+    /* neon-pad-0086 */
+    /* neon-pad-0087 */
+    /* neon-pad-0088 */
+    /* neon-pad-0089 */
+    /* neon-pad-0090 */
+    /* neon-pad-0091 */
+    /* neon-pad-0092 */
+    /* neon-pad-0093 */
+    /* neon-pad-0094 */
+    /* neon-pad-0095 */
+    /* neon-pad-0096 */
+    /* neon-pad-0097 */
+    /* neon-pad-0098 */
+    /* neon-pad-0099 */
+    /* neon-pad-0100 */
+    /* neon-pad-0101 */
+    /* neon-pad-0102 */
+    /* neon-pad-0103 */
+    /* neon-pad-0104 */
+    /* neon-pad-0105 */
+    /* neon-pad-0106 */
+    /* neon-pad-0107 */
+    /* neon-pad-0108 */
+    /* neon-pad-0109 */
+    /* neon-pad-0110 */
+    /* neon-pad-0111 */
+    /* neon-pad-0112 */
+    /* neon-pad-0113 */
+    /* neon-pad-0114 */
+    /* neon-pad-0115 */
+    /* neon-pad-0116 */
+    /* neon-pad-0117 */
+    /* neon-pad-0118 */
+    /* neon-pad-0119 */
+    /* neon-pad-0120 */
+    /* neon-pad-0121 */
+    /* neon-pad-0122 */
+    /* neon-pad-0123 */
+    /* neon-pad-0124 */
+    /* neon-pad-0125 */
+    /* neon-pad-0126 */
+    /* neon-pad-0127 */
+    /* neon-pad-0128 */
+    /* neon-pad-0129 */
+    /* neon-pad-0130 */
+    /* neon-pad-0131 */
+    /* neon-pad-0132 */
+    /* neon-pad-0133 */
+    /* neon-pad-0134 */
+    /* neon-pad-0135 */
+    /* neon-pad-0136 */
+    /* neon-pad-0137 */
+    /* neon-pad-0138 */
+    /* neon-pad-0139 */
+    /* neon-pad-0140 */
+    /* neon-pad-0141 */
+    /* neon-pad-0142 */
+    /* neon-pad-0143 */
+    /* neon-pad-0144 */
+    /* neon-pad-0145 */
+    /* neon-pad-0146 */
+    /* neon-pad-0147 */
+    /* neon-pad-0148 */
+    /* neon-pad-0149 */
+    /* neon-pad-0150 */
+    /* neon-pad-0151 */
+    /* neon-pad-0152 */
+    /* neon-pad-0153 */
+    /* neon-pad-0154 */
+    /* neon-pad-0155 */
+    /* neon-pad-0156 */
+    /* neon-pad-0157 */
+    /* neon-pad-0158 */
+    /* neon-pad-0159 */
+    /* neon-pad-0160 */
+    /* neon-pad-0161 */
+    /* neon-pad-0162 */
+    /* neon-pad-0163 */
+    /* neon-pad-0164 */
+    /* neon-pad-0165 */
+    /* neon-pad-0166 */
+    /* neon-pad-0167 */
+    /* neon-pad-0168 */
+    /* neon-pad-0169 */
+    /* neon-pad-0170 */
+    /* neon-pad-0171 */
+    /* neon-pad-0172 */
+    /* neon-pad-0173 */
+    /* neon-pad-0174 */
+    /* neon-pad-0175 */
+    /* neon-pad-0176 */
+    /* neon-pad-0177 */
+    /* neon-pad-0178 */
+    /* neon-pad-0179 */
+    /* neon-pad-0180 */
+    /* neon-pad-0181 */
+    /* neon-pad-0182 */
+    /* neon-pad-0183 */
+    /* neon-pad-0184 */
+    /* neon-pad-0185 */
+    /* neon-pad-0186 */
+    /* neon-pad-0187 */
+    /* neon-pad-0188 */
+    /* neon-pad-0189 */
+    /* neon-pad-0190 */
+    /* neon-pad-0191 */
+    /* neon-pad-0192 */
+    /* neon-pad-0193 */
+    /* neon-pad-0194 */
+    /* neon-pad-0195 */
+    /* neon-pad-0196 */
+    /* neon-pad-0197 */
+    /* neon-pad-0198 */
+    /* neon-pad-0199 */
+    /* neon-pad-0200 */
+    /* neon-pad-0201 */
+    /* neon-pad-0202 */
+    /* neon-pad-0203 */
+    /* neon-pad-0204 */
+    /* neon-pad-0205 */
+    /* neon-pad-0206 */
+    /* neon-pad-0207 */
+    /* neon-pad-0208 */
+    /* neon-pad-0209 */
+    /* neon-pad-0210 */
+    /* neon-pad-0211 */
+    /* neon-pad-0212 */
+    /* neon-pad-0213 */
+    /* neon-pad-0214 */
+    /* neon-pad-0215 */
+    /* neon-pad-0216 */
+    /* neon-pad-0217 */
+    /* neon-pad-0218 */
+    /* neon-pad-0219 */
+    /* neon-pad-0220 */
+    /* neon-pad-0221 */
+    /* neon-pad-0222 */
+    /* neon-pad-0223 */
+    /* neon-pad-0224 */
+    /* neon-pad-0225 */
+    /* neon-pad-0226 */
+    /* neon-pad-0227 */
+    /* neon-pad-0228 */
+    /* neon-pad-0229 */
+    /* neon-pad-0230 */
+    /* neon-pad-0231 */
+    /* neon-pad-0232 */
+    /* neon-pad-0233 */
+    /* neon-pad-0234 */
+    /* neon-pad-0235 */
+    /* neon-pad-0236 */
+    /* neon-pad-0237 */
+    /* neon-pad-0238 */
+    /* neon-pad-0239 */
+    /* neon-pad-0240 */
+    /* neon-pad-0241 */
+    /* neon-pad-0242 */
+    /* neon-pad-0243 */
+    /* neon-pad-0244 */
+    /* neon-pad-0245 */
+    /* neon-pad-0246 */
+    /* neon-pad-0247 */
+    /* neon-pad-0248 */
+    /* neon-pad-0249 */
+    /* neon-pad-0250 */
+    /* neon-pad-0251 */
+    /* neon-pad-0252 */
+    /* neon-pad-0253 */
+    /* neon-pad-0254 */
+    /* neon-pad-0255 */
+    /* neon-pad-0256 */
+    /* neon-pad-0257 */
+    /* neon-pad-0258 */
+    /* neon-pad-0259 */
+    /* neon-pad-0260 */
+    /* neon-pad-0261 */
+    /* neon-pad-0262 */
+    /* neon-pad-0263 */
+    /* neon-pad-0264 */
+    /* neon-pad-0265 */
+    /* neon-pad-0266 */
+    /* neon-pad-0267 */
+    /* neon-pad-0268 */
+    /* neon-pad-0269 */
+    /* neon-pad-0270 */
+    /* neon-pad-0271 */
+    /* neon-pad-0272 */
+    /* neon-pad-0273 */
+    /* neon-pad-0274 */
+    /* neon-pad-0275 */
+    /* neon-pad-0276 */
+    /* neon-pad-0277 */
+    /* neon-pad-0278 */
+    /* neon-pad-0279 */
+    /* neon-pad-0280 */
+    /* neon-pad-0281 */
+    /* neon-pad-0282 */
+    /* neon-pad-0283 */
+    /* neon-pad-0284 */
+    /* neon-pad-0285 */
+    /* neon-pad-0286 */
+    /* neon-pad-0287 */
+    /* neon-pad-0288 */
+    /* neon-pad-0289 */
+    /* neon-pad-0290 */
+    /* neon-pad-0291 */
+    /* neon-pad-0292 */
+    /* neon-pad-0293 */
+    /* neon-pad-0294 */
+    /* neon-pad-0295 */
+    /* neon-pad-0296 */
+    /* neon-pad-0297 */
+    /* neon-pad-0298 */
+    /* neon-pad-0299 */
+    /* neon-pad-0300 */
+    /* neon-pad-0301 */
+    /* neon-pad-0302 */
+    /* neon-pad-0303 */
+    /* neon-pad-0304 */
+    /* neon-pad-0305 */
+    /* neon-pad-0306 */
+    /* neon-pad-0307 */
+    /* neon-pad-0308 */
+    /* neon-pad-0309 */
+    /* neon-pad-0310 */
+    /* neon-pad-0311 */
+    /* neon-pad-0312 */
+    /* neon-pad-0313 */
+    /* neon-pad-0314 */
+    /* neon-pad-0315 */
+    /* neon-pad-0316 */
+    /* neon-pad-0317 */
+    /* neon-pad-0318 */
+    /* neon-pad-0319 */
+    /* neon-pad-0320 */
+
+    @media (max-width: 980px) {
+      .work-card {
+        grid-column: span 12;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .site-nav .section-inner {
+        min-height: 66px;
+      }
+
+      .hero {
+        min-height: 72vh;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="site-wrap">
+    <nav class="site-nav" id="top">
+      <div class="section-inner">
+        <a href="#top" class="nav-logo magnetic" aria-label="Parva Luminance Studios home">
+          <img src="logo-color.png" alt="Parva Luminance Studios logo">
+        </a>
+        <div class="nav-links">
+          <a href="#work">Work</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#creators">Creators</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero section" id="hero">
+      <div class="section-inner reveal">
+        <div class="hero-emblem-wrap" id="heroParallax">
+          <span class="beam beam--gold" aria-hidden="true"></span>
+          <span class="beam beam--orange" aria-hidden="true"></span>
+          <div class="hero-emblem">
+            <img src="logo-color.png" alt="Parva Luminance Studios emblem">
+          </div>
+        </div>
+        <h1 class="hero-title">Guided by light. Defined by story.</h1>
+        <p class="hero-subtext">Parva Luminance Studios creates photography and videography media that aligns with your goals, from visuals to storytelling.</p>
+        <div class="hero-actions">
+          <a class="btn magnetic" href="#portfolio">Explore Portfolio</a>
+          <a class="btn magnetic" href="#contact">Start a Project</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="work">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Featured Work</p>
+        <h2 class="heading reveal">Stories we've helped<br>bring into the light.</h2>
+        <div class="work-grid">
+          <article class="work-card reveal" data-project-open="buoy">
+            <div class="work-media"><img src="assets/projects/buoy/AX7A1322.JPG" alt="Buoy featured image"></div>
+            <div class="work-body">
+              <p class="work-kicker">Brand Campaign</p>
+              <h3 class="work-title">Buoy</h3>
+              <p class="work-copy">Launch visuals pairing atmospheric product moments with a kinetic hero reel.</p>
+              <button class="btn magnetic" data-project-open="buoy">View Project</button>
+            </div>
+          </article>
+
+          <article class="work-card reveal" data-project-open="lune">
+            <div class="work-media"><img src="logo-color.png" alt="Lune campaign preview"></div>
+            <div class="work-body">
+              <p class="work-kicker">Videography</p>
+              <h3 class="work-title">Lune</h3>
+              <p class="work-copy">A moody movement piece designed as a social-forward spotlight reel.</p>
+              <button class="btn magnetic" data-project-open="lune">Watch Story</button>
+            </div>
+          </article>
+
+          <article class="work-card reveal" data-project-open="fiber-and-ore">
+            <div class="work-media"><img src="assets/projects/fiber-and-ore/AX7A1298.jpeg" alt="Fiber and Ore featured image"></div>
+            <div class="work-body">
+              <p class="work-kicker">Brand Campaign</p>
+              <h3 class="work-title">Fiber and Ore</h3>
+              <p class="work-copy">Editorial textures and grounded tones with full still + motion system delivery.</p>
+              <button class="btn magnetic" data-project-open="fiber-and-ore">See Full Campaign</button>
+            </div>
+          </article>
+
+          <article class="work-card reveal" data-project-open="heirloom">
+            <div class="work-media"><img src="assets/projects/heirloom/coffee%20bags%20final%20(1%20of%205).jpg" alt="Heirloom featured image"></div>
+            <div class="work-body">
+              <p class="work-kicker">Brand Campaign</p>
+              <h3 class="work-title">Heirloom</h3>
+              <p class="work-copy">Refined packaging imagery and process-led videos for premium coffee launch assets.</p>
+              <button class="btn magnetic" data-project-open="heirloom">Open Project</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Portfolio</p>
+        <h2 class="heading reveal">small light, lasting impact.</h2>
+        <p class="subtext reveal">Filter through brand campaigns, Ruffain branding photography, and motion-first videography work.</p>
+        <div class="filters reveal" role="tablist" aria-label="Portfolio filters">
+          <button class="filter-btn active magnetic" data-filter="all" type="button">All</button>
+          <button class="filter-btn magnetic" data-filter="brand" type="button">Brand Campaigns</button>
+          <button class="filter-btn magnetic" data-filter="photography" type="button">Photography</button>
+          <button class="filter-btn magnetic" data-filter="videography" type="button">Videography</button>
+        </div>
+        <div class="portfolio-grid" id="portfolioGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="creators">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Creators</p>
+        <h2 class="heading reveal">The people<br>behind the lens.</h2>
+        <div class="creators-grid">
+          <article class="creator-card reveal">
+            <div class="creator-portrait"><img src="assets/creators/reid.jpg" alt="Reid Bissot"></div>
+            <div class="creator-body">
+              <p class="creator-role">Videographer &amp; Editor</p>
+              <h3 class="creator-name">Reid Bissot</h3>
+              <p class="creator-copy">"I am very passionate about creating things I can't fully describe, so I show people what I mean through my work."</p>
+              <a href="#contact" class="btn magnetic">Work with Reid</a>
+            </div>
+          </article>
+
+          <article class="creator-card reveal">
+            <div class="creator-portrait"><img src="logo-mono.png" alt="Timothy Thompson"></div>
+            <div class="creator-body">
+              <p class="creator-role">Photographer &amp; DP</p>
+              <h3 class="creator-name">Timothy Thompson</h3>
+              <p class="creator-copy">"Lord, who spoke light into the darkness, guide the eyes You have given me to seek what is good, true, and beautiful."</p>
+              <a href="#contact" class="btn magnetic">Work with Timothy</a>
+            </div>
+          </article>
+
+          <article class="creator-card reveal">
+            <div class="creator-portrait creator-portrait--full"><img src="assets/creators/marcos.png" alt="Marcos Tejeda"></div>
+            <div class="creator-body">
+              <p class="creator-role">Photographer</p>
+              <h3 class="creator-name">Marcos Tejeda</h3>
+              <p class="creator-copy">"The Lord is my shepherd; I shall not want."</p>
+              <a href="#contact" class="btn magnetic">Work with Marcos</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Services</p>
+        <h2 class="heading reveal">From concept decks to final deliverables.</h2>
+        <div class="service-grid">
+          <article class="service-card reveal"><h3>Brand Campaign Photography</h3><p>Conceptual stills, product narratives, and campaign systems ready for web, print, and socials.</p></article>
+          <article class="service-card reveal"><h3>Videography Production</h3><p>Cinematic reels, launch edits, and looping social cuts crafted for platform-native performance.</p></article>
+          <article class="service-card reveal"><h3>Creative Direction</h3><p>Visual planning, moodboards, shot lists, and set direction that align every frame with strategy.</p></article>
+          <article class="service-card reveal"><h3>Post-Production</h3><p>Color, retouching, sound polish, and export packaging for consistent multi-channel deployment.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="about-box reveal">
+          <p class="eyebrow">About</p>
+          <div class="about-grid">
+            <div>
+              <h2 class="heading">Parva Luminance Studios</h2>
+              <p class="subtext">Parva means small, luminance means light. We believe small, intentional light choices create lasting brand memory. Every engagement is built around your goals and translated into precise visual storytelling.</p>
+            </div>
+            <ul class="about-list">
+              <li>Lean team with direct communication and quick iteration loops.</li>
+              <li>Unified still + motion production for a cohesive campaign voice.</li>
+              <li>Asset outputs tailored for websites, paid ads, and social cutdowns.</li>
+              <li>Collaborative process with milestone reviews from pre-pro to final.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-inner">
+        <div class="contact-box reveal">
+          <p class="eyebrow">Contact</p>
+          <div class="contact-grid">
+            <form class="contact-form" action="mailto:parvaluminancestudios@gmail.com" method="post" enctype="text/plain">
+              <div><label for="name">Name</label><input id="name" name="Name" type="text" required></div>
+              <div><label for="email">Email</label><input id="email" name="Email" type="email" required></div>
+              <div><label for="company">Company</label><input id="company" name="Company" type="text"></div>
+              <div><label for="message">Project Goals</label><textarea id="message" name="Message" required></textarea></div>
+              <button type="submit" class="btn magnetic">Send Inquiry</button>
+            </form>
+            <div class="contact-links">
+              <h3 class="heading" style="font-size: clamp(1.2rem, 3vw, 1.8rem);">Start your next campaign</h3>
+              <p class="subtext">Share your timeline, goals, and deliverables. We will respond with recommended scope and production plan.</p>
+              <a href="mailto:parvaluminancestudios@gmail.com">parvaluminancestudios@gmail.com</a>
+              <a href="https://www.instagram.com/parvaluminancestudios" target="_blank" rel="noreferrer noopener">Instagram @parvaluminancestudios</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="section-inner">
+        <div class="footer-logo"><img src="logo-color.png" alt="Parva Luminance Studios"></div>
+        <p>© <span id="year"></span> Parva Luminance Studios. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h3 class="modal-title" id="modalTitle">Project</h3>
+        <button class="icon-btn" id="modalClose" type="button" aria-label="Close project modal">×</button>
+      </div>
+      <div class="modal-content">
+        <div class="project-hero" id="modalHero"></div>
+        <p class="modal-description" id="modalDescription"></p>
+        <div class="modal-gallery" id="modalGallery"></div>
+        <button class="btn magnetic modal-next" id="modalNext" type="button">Next project</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PORTFOLIO_ITEMS = [
+      { id: "brand-buoy", title: "Buoy Campaign", category: "Brand Campaigns", filter: "brand", type: "image", src: "assets/projects/buoy/AX7A1322.JPG", project: "buoy" },
+      { id: "brand-lune", title: "Lune Campaign", category: "Brand Campaigns", filter: "brand", type: "image", src: "logo-color.png", project: "lune" },
+      { id: "brand-fiber", title: "Fiber and Ore Campaign", category: "Brand Campaigns", filter: "brand", type: "image", src: "assets/projects/fiber-and-ore/AX7A1298.jpeg", project: "fiber-and-ore" },
+      { id: "brand-heirloom", title: "Heirloom Campaign", category: "Brand Campaigns", filter: "brand", type: "image", src: "assets/projects/heirloom/coffee%20bags%20final%20(1%20of%205).jpg", project: "heirloom" },
+
+      { id: "ruffain-7316", title: "Ruffain", category: "Branding", filter: "brand", type: "image", src: "assets/portfolio/photography/AX7A7316.jpeg", isPortrait: true },
+      { id: "ruffain-7352", title: "Ruffain", category: "Branding", filter: "brand", type: "image", src: "assets/portfolio/photography/AX7A7352.jpeg", isPortrait: false },
+      { id: "ruffain-7577", title: "Ruffain", category: "Branding", filter: "brand", type: "image", src: "assets/portfolio/photography/AX7A7577.jpeg", isPortrait: true },
+      { id: "ruffain-7619", title: "Ruffain", category: "Branding", filter: "brand", type: "image", src: "assets/portfolio/photography/AX7A7619.jpeg", isPortrait: true },
+      { id: "ruffain-7622", title: "Ruffain", category: "Branding", filter: "brand", type: "image", src: "assets/portfolio/photography/AX7A7622.jpeg", isPortrait: true },
+      { id: "ruffain-7632", title: "Ruffain", category: "Branding", filter: "brand", type: "image", src: "assets/portfolio/photography/AX7A7632.jpeg", isPortrait: true },
+      { id: "ruffain-7651", title: "Ruffain", category: "Branding", filter: "brand", type: "image", src: "assets/portfolio/photography/AX7A7651.jpeg", isPortrait: true }
+    ];
+
+    const PROJECTS = {
+      "buoy": {
+        slug: "buoy",
+        title: "Buoy",
+        description: "Buoy pairs crisp product storytelling with warm cinematic atmosphere to launch a premium-ready visual identity.",
+        hero: { type: "image", src: "assets/projects/buoy/AX7A1322.JPG" },
+        gallery: [
+          "assets/projects/buoy/AX7A1322.JPG",
+          "assets/projects/buoy/AX7A1323.JPG",
+          "assets/projects/buoy/AX7A1324.JPG",
+          "assets/projects/buoy/AX7A1327.JPG"
+        ],
+        video: null,
+        next: "lune"
+      },
+      "lune": {
+        slug: "lune",
+        title: "Lune",
+        description: "Lune is a movement-driven editorial reel with dreamy pacing, tonal shadows, and social-first framing.",
+        hero: { type: "image", src: "logo-color.png" },
+        gallery: [],
+        video: null,
+        next: "fiber-and-ore"
+      },
+      "fiber-and-ore": {
+        slug: "fiber-and-ore",
+        title: "Fiber and Ore",
+        description: "Fiber and Ore combines rugged textures with refined product detail to communicate depth and craftsmanship.",
+        hero: { type: "image", src: "assets/projects/fiber-and-ore/AX7A1298.jpeg" },
+        gallery: [
+          "assets/projects/fiber-and-ore/AX7A1298.jpeg", "assets/projects/fiber-and-ore/AX7A1264.jpeg", "assets/projects/fiber-and-ore/AX7A1275.jpeg", "assets/projects/fiber-and-ore/AX7A1300.jpeg"
+        ],
+        video: null,
+        next: "heirloom"
+      },
+      "heirloom": {
+        slug: "heirloom",
+        title: "Heirloom",
+        description: "Heirloom elevates handcrafted coffee packaging through tactile stills and intimate cinematic detail.",
+        hero: { type: "image", src: "assets/projects/heirloom/coffee%20bags%20final%20(1%20of%205).jpg" },
+        gallery: [
+          "assets/projects/heirloom/coffee%20bags%20final%20(1%20of%205).jpg", "assets/projects/heirloom/coffee%20bags%20final%20(2%20of%205).jpg", "assets/projects/heirloom/coffee%20bags%20final%20(3%20of%205).jpg", "assets/projects/heirloom/coffee%20bags%20final%20(4%20of%205).jpg"
+        ],
+        video: null,
+        next: "buoy"
+      }
+    };
+
+    const portfolioGrid = document.getElementById("portfolioGrid");
+    const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
+    const revealEls = Array.from(document.querySelectorAll(".reveal"));
+    const cursorGlow = document.getElementById("cursorGlow");
+
+    const projectModal = document.getElementById("projectModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalHero = document.getElementById("modalHero");
+    const modalGallery = document.getElementById("modalGallery");
+    const modalClose = document.getElementById("modalClose");
+    const modalNext = document.getElementById("modalNext");
+
+    let currentFilter = "all";
+    let currentProject = null;
+    let buzzPlayed = false;
+
+    function playLedBuzz() {
+      if (buzzPlayed) return;
+      buzzPlayed = true;
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const duration = 0.12;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+      osc.type = "sawtooth";
+      osc.frequency.value = 120;
+      filter.type = "bandpass";
+      filter.frequency.value = 950;
+      filter.Q.value = 8;
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    }
+
+    function assetUrl(path) {
+      return encodeURI(path).replace(/#/g, "%23");
+    }
+
+    function createPortfolioItem(item) {
+      const card = document.createElement("article");
+      card.className = "portfolio-item";
+      if (item.isPortrait) card.classList.add("is-portrait");
+      card.dataset.filter = item.filter;
+      card.dataset.id = item.id;
+
+      let media;
+      if (item.type === "video") {
+        media = document.createElement("video");
+        media.src = assetUrl(item.src);
+        media.className = "portfolio-item-media";
+        media.muted = true;
+        media.loop = true;
+        media.playsInline = true;
+        media.autoplay = true;
+        media.preload = "metadata";
+      } else {
+        media = document.createElement("img");
+        media.src = assetUrl(item.src);
+        media.alt = item.title;
+        media.className = "portfolio-item-media";
+        media.loading = "lazy";
+        if (item.isPortrait) media.style.objectPosition = "center 26%";
+      }
+
+      const overlay = document.createElement("div");
+      overlay.className = "portfolio-overlay";
+      overlay.innerHTML = `<strong>${item.title}</strong><span>${item.category}</span>`;
+
+      card.append(media, overlay);
+
+      if (item.project) {
+        card.addEventListener("click", () => openProject(item.project));
+      }
+
+      return card;
+    }
+
+    function renderPortfolio() {
+      portfolioGrid.innerHTML = "";
+      const items = PORTFOLIO_ITEMS.filter((item) => currentFilter === "all" || item.filter === currentFilter);
+      items.forEach((item) => portfolioGrid.appendChild(createPortfolioItem(item)));
+      applyVerticalVideoClasses(portfolioGrid);
+    }
+
+    function setFilter(nextFilter) {
+      currentFilter = nextFilter;
+      filterButtons.forEach((btn) => {
+        const active = btn.dataset.filter === nextFilter;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-selected", String(active));
+      });
+      renderPortfolio();
+    }
+
+    function buildHeroMedia(project) {
+      modalHero.innerHTML = "";
+      modalHero.classList.remove("is-vertical-video");
+
+      if (project.hero && project.hero.type === "image") {
+        const img = document.createElement("img");
+        img.src = assetUrl(project.hero.src);
+        img.alt = `${project.title} hero image`;
+        modalHero.appendChild(img);
+      } else {
+        const video = document.createElement("video");
+        video.src = assetUrl(project.video);
+        video.controls = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        modalHero.appendChild(video);
+      }
+      applyVerticalVideoClasses(modalHero);
+    }
+
+    function buildGallery(project) {
+      modalGallery.innerHTML = "";
+
+      if (project.video) {
+        const video = document.createElement("video");
+        video.src = assetUrl(project.video);
+        video.controls = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        modalGallery.appendChild(video);
+      }
+
+      project.gallery.forEach((path) => {
+        const img = document.createElement("img");
+        img.src = assetUrl(path);
+        img.alt = `${project.title} gallery image`;
+        modalGallery.appendChild(img);
+      });
+
+      applyVerticalVideoClasses(modalGallery);
+    }
+
+    function openProject(slug) {
+      const project = PROJECTS[slug];
+      if (!project) return;
+
+      currentProject = slug;
+      modalTitle.textContent = project.title;
+      modalDescription.textContent = project.description;
+
+      buildHeroMedia(project);
+      buildGallery(project);
+
+      modalNext.textContent = `Next project: ${PROJECTS[project.next].title}`;
+      modalNext.dataset.next = project.next;
+
+      projectModal.classList.add("is-open");
+      projectModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      playLedBuzz();
+    }
+
+    function closeProject() {
+      projectModal.classList.remove("is-open");
+      projectModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function applyVerticalVideoClasses(scope = document) {
+      const videos = Array.from(scope.querySelectorAll("video"));
+      videos.forEach((video) => {
+        const markVertical = () => {
+          if (!video.videoWidth || !video.videoHeight) return;
+          const isVertical = video.videoHeight > video.videoWidth;
+          video.classList.toggle("is-vertical", isVertical);
+          const workCard = video.closest(".work-card");
+          if (workCard) workCard.classList.toggle("is-vertical-video", isVertical);
+          const portfolioItem = video.closest(".portfolio-item");
+          if (portfolioItem) portfolioItem.classList.toggle("is-vertical-video", isVertical);
+          const hero = video.closest(".project-hero");
+          if (hero) hero.classList.toggle("is-vertical-video", isVertical);
+        };
+
+        if (video.readyState >= 1) {
+          markVertical();
+        } else {
+          video.addEventListener("loadedmetadata", markVertical, { once: true });
+        }
+      });
+    }
+
+    function initScrollReveal() {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -24px 0px" }
+      );
+      revealEls.forEach((el) => {
+        observer.observe(el);
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+          el.classList.add("is-visible");
+        }
+      });
+    }
+
+    function initCursorGlow() {
+      window.addEventListener("pointermove", (event) => {
+        cursorGlow.style.left = `${event.clientX}px`;
+        cursorGlow.style.top = `${event.clientY}px`;
+      });
+    }
+
+    function initMagneticButtons() {
+      const magnets = document.querySelectorAll(".magnetic");
+      magnets.forEach((el) => {
+        const strength = 14;
+        el.addEventListener("pointermove", (event) => {
+          const bounds = el.getBoundingClientRect();
+          const dx = event.clientX - (bounds.left + bounds.width / 2);
+          const dy = event.clientY - (bounds.top + bounds.height / 2);
+          el.style.transform = `translate(${dx / strength}px, ${dy / strength}px)`;
+        });
+        el.addEventListener("pointerleave", () => {
+          el.style.transform = "translate(0, 0)";
+        });
+      });
+    }
+
+    function initHeroParallax() {
+      const heroParallax = document.getElementById("heroParallax");
+      window.addEventListener("scroll", () => {
+        const y = window.scrollY;
+        heroParallax.style.transform = `translate3d(0, ${Math.min(y * 0.12, 48)}px, 0)`;
+      }, { passive: true });
+    }
+
+    function bindEvents() {
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          setFilter(btn.dataset.filter);
+          playLedBuzz();
+        });
+      });
+
+      document.querySelectorAll("[data-project-open]").forEach((node) => {
+        node.addEventListener("click", () => {
+          openProject(node.dataset.projectOpen);
+        });
+      });
+
+      modalClose.addEventListener("click", closeProject);
+      modalNext.addEventListener("click", () => {
+        if (!currentProject) return;
+        const nextSlug = PROJECTS[currentProject].next;
+        openProject(nextSlug);
+      });
+
+      projectModal.addEventListener("click", (event) => {
+        if (event.target === projectModal) closeProject();
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && projectModal.classList.contains("is-open")) {
+          closeProject();
+        }
+      });
+
+      window.addEventListener("pointerdown", playLedBuzz, { once: true });
+      window.addEventListener("keydown", playLedBuzz, { once: true });
+    }
+
+    function init() {
+      document.getElementById("year").textContent = new Date().getFullYear();
+      renderPortfolio();
+      applyVerticalVideoClasses(document);
+      initScrollReveal();
+      initCursorGlow();
+      initMagneticButtons();
+      initHeroParallax();
+      bindEvents();
+    }
+
+    init();
+  </script>
+</body>
+</html>
+
